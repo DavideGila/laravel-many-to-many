@@ -43,7 +43,7 @@ class TechnologyController extends Controller
 
         $technology = Technology::create($formData);
 
-        return redirect()->route('admin.categories.show', $technology);
+        return redirect()->route('admin.technologies.show', $technology);
     }
 
     /**
