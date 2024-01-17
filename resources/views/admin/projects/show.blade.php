@@ -3,8 +3,25 @@
     <section class="container">
         <img src="{{ asset('storage/' . $project->image) }}" alt="">
         <h1>{{$project->title}}</h1>
-        <p>{{$project->body}}</p>
-        <div>{{$project->category ? $project->category->name : 'Uncategorized'}}</div>
+        <div>
+            <p>{{ $project->body }}</p>
+            @if($project->category_id)
+                <div class="mb-3">
+                    <h4>Category</h4>
+                    <a class="badge text-bg-primary" href="{{route('admin.categories.show', $project->category->slug)}}">{{$project->category->name}}</a>
+                </div>
+            @endif
+            <img src="{{asset('storage/' . $project->image)}}" alt="{{$project->title}}">
+             @if(count($project->technologies) > 0)
+                <div class="mb-3">
+                    <h4>Technologies</h4>
+                    @foreach ($project->technologies as $technology)
+                        <a class="badge rounded-pill text-bg-success" href="{{route('admin.technologies.show', $technology->slug)}}">{{$technology->name}}</a>
+                    @endforeach
+
+                </div>
+            @endif
+        </div>
 
         <button class="btn btn-primary mb-3"><a href="{{route('admin.projects.edit', $project)}}" class="text-white text-decoration-none">Edit</a></button>
         <form action="{{route('admin.projects.destroy', $project)}}" method="POST">
