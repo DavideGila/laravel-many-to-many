@@ -23,7 +23,7 @@ class UpdateTechnologyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'min:3', 'max:200', Rule::unique('technlogies')->ignore($this->technology    )]
+            'name' => ['required', 'min:3', 'max:200', Rule::unique('technologies')->ignore($this->technology    )]
         ];
     }
     public function messages()
