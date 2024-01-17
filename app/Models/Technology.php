@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Technology extends Model
 {
-    protected $guarded = [];
     use HasFactory;
+    protected $guarded = [];
+    public function projects()
+    {
+        return $this->belongsToMany(Project::class);
+    }
 }
