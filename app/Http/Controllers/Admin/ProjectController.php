@@ -58,6 +58,9 @@ class ProjectController extends Controller
             $formData['image'] = $img_path;
         }
         $project = Project::create($formData);
+        if ($request->has('technologies')) {
+            $project->technologies()->attach($request->technologies);
+        }
 
         return redirect()->route('admin.projects.show', $project);
     }
@@ -105,6 +108,11 @@ class ProjectController extends Controller
 
             $path = Storage::put('images', $formData['image']);
             $formData['image'] = $path;
+        }
+        if ($request->has('technologies')) {
+            $project->technologies()->sync($request->technologies);
+        } else {
+            $project->technologies()->detach();
         }
 
 
