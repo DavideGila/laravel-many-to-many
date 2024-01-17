@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('content')
     <section class="container">
-        <img src="{{ asset('storage/' . $project->image) }}" alt="">
         <h1>{{$project->title}}</h1>
+        <img src="{{asset('storage/' . $project->image)}}" alt="{{$project->title}}">
         <div>
             <p>{{ $project->body }}</p>
             @if($project->category_id)
@@ -11,7 +11,6 @@
                     <a class="badge text-bg-primary" href="{{route('admin.categories.show', $project->category->slug)}}">{{$project->category->name}}</a>
                 </div>
             @endif
-            <img src="{{asset('storage/' . $project->image)}}" alt="{{$project->title}}">
              @if(count($project->technologies) > 0)
                 <div class="mb-3">
                     <h4>Technologies</h4>
